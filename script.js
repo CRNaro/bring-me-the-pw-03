@@ -10,11 +10,15 @@ const lowercase = confirm('Password SHOULD include a lowercase letter.  Click OK
 const numbers = confirm('Password SHOULD include a number letter.  Click OK to continue');
 const symbols = confirm('Password SHOULD include a symbol letter.  Click OK to continue');
 const keyLength = prompt('Password must be between 8 and 128 characters.  Click OK to continue');
+
+const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz'
+const numeric = '0123456789'
+const specialSymbols = '!@#$%^&*'
 const multiSelect = [];
 
 function writePassword(lenth, numbers, uppercase, lowercase, symbols) {
 
-    let characters = '';
 
     if (numbers) {
         multiSelect.push('0123456789')
@@ -32,13 +36,16 @@ function writePassword(lenth, numbers, uppercase, lowercase, symbols) {
         multiSelect.push('!@#$%^&*')
     }
 
+    let characters = '';
+
+    let password = '';
 
 
 
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
+/* var password = generatePassword();
+var passwordText = document.querySelector("#password");
 
-    passwordText.value = password;
+passwordText.value = password;
 
 }
 
