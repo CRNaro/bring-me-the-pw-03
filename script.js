@@ -1,76 +1,59 @@
-// Assignment code here
+// Define variables
+const generateBtn = document.querySelector('#generate');
+const passwordText = document.querySelector('#password');
 
+// Password function
+function generatePassword(length, numbers, uppercase, lowercase, symbols) {
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+    // My function code - includes all the variations of characers
+    const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+    const numeric = '0123456789';
+    const specialSymbols = '!@#$%^&*';
+    const multiSelect = [];
 
-// Write password to the #password input
-const uppercase = confirm('Password SHOULD include an uppercase letter.  Click OK to continue');
-const lowercase = confirm('Password SHOULD include a lowercase letter.  Click OK to continue');
-const numbers = confirm('Password SHOULD include a number letter.  Click OK to continue');
-const symbols = confirm('Password SHOULD include a symbol letter.  Click OK to continue');
-const keyLength = prompt('Password must be between 8 and 128 characters.  Click OK to continue');
-
-const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz'
-const numeric = '0123456789'
-const specialSymbols = '!@#$%^&*'
-const multiSelect = [];
-
-function writePassword(length, numbers, uppercase, lowercase, symbols) {
-
-
-    if (numbers) {
-        multiSelect.push('0123456789')
-    }
-
+    // My if statements - connected to multiSelect so that it can be filled by users choices
+    /* the multiSelect is also connected back to the other functions when selected.
+    'push()' method is used to add on to the array that is being created when user selects choices */
     if (uppercase) {
-        multiSelect.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        multiSelect.push(uppercaseLetters);
     }
-
     if (lowercase) {
-        multiSelect.push('abcdefghijklmnopqrstuvwxyz')
+        multiSelect.push(lowercaseLetters);
     }
-
+    if (numbers) {
+        multiSelect.push(numeric);
+    }
     if (symbols) {
-        multiSelect.push('!@#$%^&*')
+        multiSelect.push(specialSymbols);
     }
 
-    let characters = '';
 
+
+    // 
+    let characters = '';
     for (let i = 0; i < multiSelect.length; i++) {
         characters += multiSelect[i];
-
     }
 
+    //
     let password = '';
-
     for (let i = 0; i < length; i++) {
-        password += characters.charAt(math.floor(math.random() * characters.length));
+        password += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return password;
 }
 
+function writePassword() {
+    const uppercase = confirm('Password SHOULD include an uppercase letter.  Click OK to continue');
+    const lowercase = confirm('Password SHOULD include a lowercase letter.  Click OK to continue');
+    const numbers = confirm('Password SHOULD include a number letter.  Click OK to continue');
+    const symbols = confirm('Password SHOULD include a symbol letter.  Click OK to continue');
+    const keyLength = prompt('Password must be between 8 and 128 characters.  Click OK to continue');
 
-/* var password = generatePassword();
-var passwordText = document.querySelector("#password");
+    const password = generatePassword(keyLength, uppercase, lowercase, numbers, symbols);
 
-passwordText.value = password;
-
+    passwordText.value = password;
 }
 
-
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
-/* writing own code as first attempt */
-
-/*function generatePassword() {
-    let pass = '';
-    let str = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' +
-        'abcdefghijklmnopqrstuvwxyz'
-}*/
+generateBtn.addEventListener('click', writePassword);
