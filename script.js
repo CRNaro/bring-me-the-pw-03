@@ -17,7 +17,7 @@ const numeric = '0123456789'
 const specialSymbols = '!@#$%^&*'
 const multiSelect = [];
 
-function writePassword(lenth, numbers, uppercase, lowercase, symbols) {
+function writePassword(length, numbers, uppercase, lowercase, symbols) {
 
 
     if (numbers) {
@@ -38,8 +38,18 @@ function writePassword(lenth, numbers, uppercase, lowercase, symbols) {
 
     let characters = '';
 
+    for (let i = 0; i < multiSelect.length; i++) {
+        characters += multiSelect[i];
+
+    }
+
     let password = '';
 
+    for (let i = 0; i < length; i++) {
+        password += characters.charAt(math.floor(math.random() * characters.length));
+    }
+    return password;
+}
 
 
 /* var password = generatePassword();
