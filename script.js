@@ -1,11 +1,12 @@
 // Define variables
 const generateBtn = document.querySelector('#generate');
 const passwordText = document.querySelector('#password');
+const combinedArray = [];
 
 // Password function
 function generatePassword(length, numbers, uppercase, lowercase, symbols) {
 
-    // My function code - includes all the variations of characers
+    // My function code - includes all the variations of characters
     const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
     const numeric = '0123456789';
@@ -17,26 +18,46 @@ function generatePassword(length, numbers, uppercase, lowercase, symbols) {
     'push()' method is used to add on to the array that is being created when user selects choices */
     if (uppercase) {
         multiSelect.push(uppercaseLetters);
+    } else {
+        const index = multiSelect.indexOf(uppercaseLetters);
+        if (index !== -1) {
+            multiSelect.splice(index, 1);
+        }
     }
     if (lowercase) {
         multiSelect.push(lowercaseLetters);
+    } else {
+        const index = multiSelect.indexOf(lowercaseLetters);
+        if (index !== -1) {
+            multiSelect.splice(index, 1);
+        }
     }
     if (numbers) {
         multiSelect.push(numeric);
+    } else {
+        const index = multiSelect.indexOf(numeric);
+        if (index !== -1) {
+            multiSelect.splice(index, 1);
+        }
     }
     if (symbols) {
         multiSelect.push(specialSymbols);
+    } else {
+        const index = multiSelect.indexOf(specialSymbols);
+        if (index !== -1) {
+            multiSelect.splice(index, 1);
+        }
     }
-
-
+    let combinedArray = multiSelect.join('');
 
     // Character iteration string
-    let characters = '';
-    for (let i = 0; i < multiSelect.length; i++) {
+    let characters = multiSelect.join('');
+    
+   /* for (let i = 0; i < multiSelect.length; i++) {
         characters += multiSelect[i];
-    }
+    } */
 
-    // Password generation string - using the random math and lenght chosen 
+    // Password generation string - using the random math and length chosen 
     let password = '';
     for (let i = 0; i < length; i++) {
         password += characters.charAt(Math.floor(Math.random() * characters.length));
@@ -45,11 +66,13 @@ function generatePassword(length, numbers, uppercase, lowercase, symbols) {
 }
 // Popup and questions 
 function writePassword() {
-    const uppercase = confirm('Password SHOULD include an uppercase letter.  Click OK to continue');
-    const lowercase = confirm('Password SHOULD include a lowercase letter.  Click OK to continue');
-    const numbers = confirm('Password SHOULD include a number letter.  Click OK to continue');
-    const symbols = confirm('Password SHOULD include a symbol letter.  Click OK to continue');
-    const keyLength = prompt('Password must be between 8 and 128 characters.  Click OK to continue');
+    let uppercase = confirm('Password SHOULD include an uppercase letter.  Click OK to continue, or Cancel to exclude.');
+    let lowercase = confirm('Password SHOULD include a lowercase letter.  Click OK to continue');
+    let numbers = confirm('Password SHOULD include a number letter.  Click OK to continue');
+    let symbols = confirm('Password SHOULD include a symbol letter.  Click OK to continue');
+    let keyLength = prompt('Password must be between 8 and 128 characters.  Click OK to continue');
+
+    
 
     // Runs generatePassword with what the user wanted
     const password = generatePassword(keyLength, uppercase, lowercase, numbers, symbols);
