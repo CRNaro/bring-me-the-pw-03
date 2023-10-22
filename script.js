@@ -1,4 +1,4 @@
-
+// Decalring variables to connect to HTML
 const generateBtn = document.querySelector('#generate');
 const passwordText = document.querySelector('#password');
 
@@ -11,7 +11,7 @@ function generatePassword(length, characters) {
     return password;
 }
 
-// Popup and questions 
+// Popup window to ask user what is wanted in their password 
 function writePassword() {
     const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
@@ -42,10 +42,10 @@ function writePassword() {
         alert('No options were selected.  Defaulting to use all options.');
         combinedArray.push(uppercaseLetters, lowercaseLetters, numeric, specialSymbols);
     }
-
+    // Combines users choices into one array
     const characters = combinedArray.join('');
 
-    // Runs generatePassword with what the user wanted
+    // Runs generatePassword with what the user wants
     const password = generatePassword(keyLength, characters);
 
     // Puts password element value in so it can be generated
