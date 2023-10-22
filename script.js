@@ -1,4 +1,4 @@
-// Decalring variables to connect to HTML
+// Declaring variables to connect to HTML
 const generateBtn = document.querySelector('#generate');
 const passwordText = document.querySelector('#password');
 
